@@ -5,8 +5,8 @@ import AppError from "../../errors";
 const createCategoriesServices = async (payload) => {
 
     const findCategory = await database.query(`SELECT * FROM categories WHERE name = $1;`,[payload.name.trim()])
-    console.log(findCategory)
-    if(findCategory.rowCount > 0){
+
+    if(findCategory.rows[0]){
         throw new AppError("category already exists", 400)
     }
 

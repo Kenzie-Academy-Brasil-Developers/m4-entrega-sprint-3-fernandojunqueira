@@ -1,15 +1,19 @@
 import database from "../../database"
+import AppError from "../../errors"
 
 const listCategoryServices = async (id) => {
-    const [queryResponse] = await database
-    .query( `SELECT * FROM categories WHERE id = $1`,[id])
-    .then((res) => res.rows)
     
-    if(!queryResponse){
-        return [404, {message: "Not found"}]
+    try {
+      
+        const [queryResponse] = await database
+        .query( `SELECT * FROM categories WHERE id = $1`,[id])
+        .then((res) => res.rows)
+      
+        return [200,queryResponse]
+        
+    } catch (error) {
+        throw new AppError("category do not exists", 404)
     }
-
-    return [200,queryResponse]
 }
 
 export default listCategoryServices

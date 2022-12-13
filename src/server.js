@@ -7,6 +7,4 @@ app.listen(3007, async () => {
     console.log("App is running on http://localhost:3007");
 });
 
-// console.log(server)
-
-module.exports = app
+export default app

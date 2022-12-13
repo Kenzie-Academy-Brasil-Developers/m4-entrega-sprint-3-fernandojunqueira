@@ -1,8 +1,12 @@
-import app from "./app";
 import "dotenv/config"
+import app from "./app";
 import { startDatabase } from "./database";
 
-export default app.listen(3000, () => {
-    startDatabase();
-    console.log("Server running");
+app.listen(3007, async () => {
+    await startDatabase();
+    console.log("App is running on http://localhost:3007");
 });
+
+// console.log(server)
+
+module.exports = app
